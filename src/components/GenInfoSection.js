@@ -9,7 +9,7 @@ export default class GenInfoSection extends Component {
       name: '',
       email: '',
       phoneNumber: '',
-      submitted: true,
+      submitted: false,
     };
   }
 
@@ -58,8 +58,17 @@ export default class GenInfoSection extends Component {
       <section>
         {submitted
           ? (
+            <>
+              <p>{`Name: ${name}`}</p>
+              <p>{`E-mail: ${email}`}</p>
+              <p>{`Phone Number: ${phoneNumber}`}</p>
+              <button type="button" onClick={this.handleClick}>Edit</button>
+            </>
+
+          )
+          : (
             <GenInfoForm
-              info={name}
+              name={name}
               email={email}
               phoneNumber={phoneNumber}
               handleNameChange={this.handleNameChange}
@@ -67,15 +76,6 @@ export default class GenInfoSection extends Component {
               handlePhoneNumberChange={this.handlePhoneNumberChange}
               onSubmitForm={this.onSubmit}
             />
-          )
-          : (
-            <>
-              <p>{`Name: ${name}`}</p>
-              <p>{`E-mail: ${email}`}</p>
-              <p>{`Phone Number: ${phoneNumber}`}</p>
-
-              <button type="button" onClick={this.handleClick}>Edit</button>
-            </>
           )}
       </section>
     );
