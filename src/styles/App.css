@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter.ttf') format('truetype');
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+main {
+  max-width: 45rem;
+  margin-inline: auto;
+  padding-block: 1.5em;
+}
+
+section {
+  padding: 1em;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+input,
+textarea {
+  font-size: 1rem;
+  padding: 0.4em;
+  border-radius: 5px;
+  border: 1px solid;
+}
+
+input[type='date'] {
+  max-width: min-content;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  background-color: #e3f3b7;
+  cursor: pointer;
+  border: none;
+  align-self: center;
+  padding: 0.5em 1.5em;
+  border-radius: 10px;
+  border: 1px solid #000;
+}
+
+button:hover {
+  background-color: #c8db92;
+}
