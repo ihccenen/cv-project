@@ -67,7 +67,7 @@ export default class PracticalExperience extends Component {
     } = this.state;
 
     return (
-      <section>
+      <section className="flex">
         {submitted
           ? (
             <>

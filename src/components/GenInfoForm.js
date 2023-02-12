@@ -10,8 +10,8 @@ export default function GenInfoForm({
   onSubmitForm,
 }) {
   return (
-    <form onSubmit={onSubmitForm}>
-      <label htmlFor="name">
+    <form className="flex" onSubmit={onSubmitForm}>
+      <label className="flex" htmlFor="name">
         Name:
         <input
           type="text"
@@ -23,7 +23,7 @@ export default function GenInfoForm({
         />
       </label>
 
-      <label htmlFor="email">
+      <label className="flex" htmlFor="email">
         E-mail:
         <input
           type="text"
@@ -36,7 +36,7 @@ export default function GenInfoForm({
         />
       </label>
 
-      <label htmlFor="phone-number">
+      <label className="flex" htmlFor="phone-number">
         Phone Number:
         <input
           type="tel"

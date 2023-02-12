@@ -16,8 +16,8 @@ export default function PracticalExperienceForm(
   },
 ) {
   return (
-    <form onSubmit={onSubmit}>
-      <label htmlFor="company-name">
+    <form className="flex" onSubmit={onSubmit}>
+      <label className="flex" htmlFor="company-name">
         Company Name:
         <input
           type="text"
@@ -29,7 +29,7 @@ export default function PracticalExperienceForm(
         />
       </label>
 
-      <label htmlFor="position-title">
+      <label className="flex" htmlFor="position-title">
         Position Title:
         <input
           type="text"
@@ -41,12 +41,12 @@ export default function PracticalExperienceForm(
         />
       </label>
 
-      <label htmlFor="main-tasks">
+      <label className="flex" htmlFor="main-tasks">
         Main Tasks:
         <textarea onChange={handleMainTasksChange} value={mainTasks} />
       </label>
 
-      <label htmlFor="joined">
+      <label className="flex" htmlFor="joined">
         Joined:
         <input
           type="date"
@@ -58,7 +58,7 @@ export default function PracticalExperienceForm(
         />
       </label>
 
-      <label htmlFor="left">
+      <label className="flex" htmlFor="left">
         Left:
         <input
           type="date"
