@@ -3,15 +3,17 @@ import React from 'react';
 export default function EducationalExperienceForm({
   schoolName,
   titleOfStudy,
-  dateOfStudy,
+  dateOfStudyStart,
+  dateOfStudyEnd,
   handleSchoolNameChange,
   handleTitleOfStudyChange,
-  handleDateOfStudyChange,
+  handleDateOfStudyStartChange,
+  handleDateOfStudyEndChange,
   onSubmit,
 }) {
   return (
-    <form onSubmit={onSubmit}>
-      <label htmlFor="school-name">
+    <form className="flex" onSubmit={onSubmit}>
+      <label className="flex" htmlFor="school-name">
         School Name:
         <input
           type="text"
@@ -23,7 +25,7 @@ export default function EducationalExperienceForm({
         />
       </label>
 
-      <label htmlFor="title-of-study">
+      <label className="flex" htmlFor="title-of-study">
         Title of Study:
         <input
           type="text"
@@ -35,15 +37,27 @@ export default function EducationalExperienceForm({
         />
       </label>
 
-      <label htmlFor="date-of-study">
-        Date of Study:
+      <label className="flex" htmlFor="date-of-study-start">
+        Date of Study Start:
         <input
           type="date"
-          id="date-of-study"
-          name="date-of-study"
-          value={dateOfStudy}
+          id="date-of-study-start"
+          name="date-of-study-start"
+          value={dateOfStudyStart}
           required
-          onChange={handleDateOfStudyChange}
+          onChange={handleDateOfStudyStartChange}
+        />
+      </label>
+
+      <label className="flex" htmlFor="date-of-study-end">
+        Date of Study End:
+        <input
+          type="date"
+          id="date-of-study-end"
+          name="date-of-study-end"
+          value={dateOfStudyEnd}
+          required
+          onChange={handleDateOfStudyEndChange}
         />
       </label>
 
