@@ -8,7 +8,8 @@ export default class EducationalExperience extends Component {
     this.state = {
       schoolName: '',
       titleOfStudy: '',
-      dateOfStudy: '',
+      dateOfStudyStart: '',
+      dateOfStudyEnd: '',
       submitted: false,
     };
   }
@@ -25,9 +26,15 @@ export default class EducationalExperience extends Component {
     });
   };
 
-  handleDateOfStudyChange = (e) => {
+  handleDateOfStudyStartChange = (e) => {
     this.setState({
-      dateOfStudy: e.target.value,
+      dateOfStudyStart: e.target.value,
+    });
+  };
+
+  handleDateOfStudyEndChange = (e) => {
+    this.setState({
+      dateOfStudyEnd: e.target.value,
     });
   };
 
@@ -51,18 +58,23 @@ export default class EducationalExperience extends Component {
 
   render() {
     const {
-      schoolName, titleOfStudy, dateOfStudy, submitted,
+      schoolName,
+      titleOfStudy,
+      dateOfStudyStart,
+      dateOfStudyEnd,
+      submitted,
     } = this.state;
 
     return (
-      <section>
+      <section className="flex">
         {
           submitted
             ? (
               <>
                 <p>{`School Name: ${schoolName}`}</p>
                 <p>{`Title of Study: ${titleOfStudy}`}</p>
-                <p>{`Date of Study: ${dateOfStudy}`}</p>
+                <p>{`Date of Study Start: ${dateOfStudyStart}`}</p>
+                <p>{`Date of Study End: ${dateOfStudyEnd}`}</p>
                 <button type="button" onClick={this.handleClick}>Edit</button>
               </>
             )
@@ -70,10 +82,12 @@ export default class EducationalExperience extends Component {
               <EducationalExperienceForm
                 schoolName={schoolName}
                 titleOfStudy={titleOfStudy}
-                dateOfStudy={dateOfStudy}
+                dateOfStudyStart={dateOfStudyStart}
+                dateOfStudyEnd={dateOfStudyEnd}
                 handleSchoolNameChange={this.handleSchoolNameChange}
                 handleTitleOfStudyChange={this.handleTitleOfStudyChange}
-                handleDateOfStudyChange={this.handleDateOfStudyChange}
+                handleDateOfStudyStartChange={this.handleDateOfStudyStartChange}
+                handleDateOfStudyEndChange={this.handleDateOfStudyEndChange}
                 onSubmit={this.onSubmit}
               />
             )
