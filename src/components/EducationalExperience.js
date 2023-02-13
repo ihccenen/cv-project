@@ -1,98 +1,78 @@
-import React, { Component } from 'react';
-import EducationalExperienceForm from './EducationalExperienceForm';
+import React from 'react';
+import useForm from './useForm';
+import useFormInput from './useFormInput';
 
-export default class EducationalExperience extends Component {
-  constructor(props) {
-    super(props);
+export default function EducationalExperience() {
+  const schoolName = useFormInput('');
+  const titleOfStudy = useFormInput('');
+  const dateOfStudyStart = useFormInput('');
+  const dateOfStudyEnd = useFormInput('');
+  const submit = useForm(false);
 
-    this.state = {
-      schoolName: '',
-      titleOfStudy: '',
-      dateOfStudyStart: '',
-      dateOfStudyEnd: '',
-      submitted: false,
-    };
-  }
+  return (
+    <section className="flex">
+      {
+        submit.value
+          ? (
+            <>
+              <p>{`School Name: ${schoolName.value}`}</p>
+              <p>{`Title of Study: ${titleOfStudy.value}`}</p>
+              <p>{`Date of Study Start: ${dateOfStudyStart.value}`}</p>
+              <p>{`Date of Study End: ${dateOfStudyEnd.value}`}</p>
+              <button type="button" onClick={submit.handleClick}>Edit</button>
+            </>
+          )
+          : (
+            <form className="flex" onSubmit={submit.handleClick}>
+              <label className="flex" htmlFor="school-name">
+                School Name:
+                <input
+                  type="text"
+                  id="school-name"
+                  name="school-name"
+                  value={schoolName.value}
+                  onChange={schoolName.handleChange}
+                />
+              </label>
 
-  handleSchoolNameChange = (e) => {
-    this.setState({
-      schoolName: e.target.value,
-    });
-  };
+              <label className="flex" htmlFor="title-of-study">
+                Title of Study:
+                <input
+                  type="text"
+                  id="title-of-study"
+                  name="title-of-study"
+                  value={titleOfStudy.value}
+                  onChange={titleOfStudy.handleChange}
+                />
+              </label>
 
-  handleTitleOfStudyChange = (e) => {
-    this.setState({
-      titleOfStudy: e.target.value,
-    });
-  };
+              <label className="flex" htmlFor="date-of-study-start">
+                Date of Study Start:
+                <input
+                  type="date"
+                  id="date-of-study-start"
+                  name="date-of-study-start"
+                  value={dateOfStudyStart.value}
+                  onChange={dateOfStudyStart.handleChange}
+                />
+              </label>
 
-  handleDateOfStudyStartChange = (e) => {
-    this.setState({
-      dateOfStudyStart: e.target.value,
-    });
-  };
+              <label className="flex" htmlFor="date-of-study-end">
+                Date of Study End:
+                <input
+                  type="date"
+                  id="date-of-study-end"
+                  name="date-of-study-end"
+                  value={dateOfStudyEnd.value}
+                  onChange={dateOfStudyEnd.handleChange}
+                />
+              </label>
 
-  handleDateOfStudyEndChange = (e) => {
-    this.setState({
-      dateOfStudyEnd: e.target.value,
-    });
-  };
+              <button type="submit">Submit</button>
 
-  handleClick = () => {
-    const { submitted } = this.state;
-
-    this.setState({
-      submitted: !submitted,
-    });
-  };
-
-  onSubmit = (e) => {
-    e.preventDefault();
-
-    const { submitted } = this.state;
-
-    this.setState({
-      submitted: !submitted,
-    });
-  };
-
-  render() {
-    const {
-      schoolName,
-      titleOfStudy,
-      dateOfStudyStart,
-      dateOfStudyEnd,
-      submitted,
-    } = this.state;
-
-    return (
-      <section className="flex">
-        {
-          submitted
-            ? (
-              <>
-                <p>{`School Name: ${schoolName}`}</p>
-                <p>{`Title of Study: ${titleOfStudy}`}</p>
-                <p>{`Date of Study Start: ${dateOfStudyStart}`}</p>
-                <p>{`Date of Study End: ${dateOfStudyEnd}`}</p>
-                <button type="button" onClick={this.handleClick}>Edit</button>
-              </>
-            )
-            : (
-              <EducationalExperienceForm
-                schoolName={schoolName}
-                titleOfStudy={titleOfStudy}
-                dateOfStudyStart={dateOfStudyStart}
-                dateOfStudyEnd={dateOfStudyEnd}
-                handleSchoolNameChange={this.handleSchoolNameChange}
-                handleTitleOfStudyChange={this.handleTitleOfStudyChange}
-                handleDateOfStudyStartChange={this.handleDateOfStudyStartChange}
-                handleDateOfStudyEndChange={this.handleDateOfStudyEndChange}
-                onSubmit={this.onSubmit}
-              />
-            )
-        }
-      </section>
-    );
-  }
+            </form>
+          )
+      }
+    </section>
+  );
 }

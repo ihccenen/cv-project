@@ -1,100 +1,87 @@
-import React, { Component } from 'react';
-import PracticalExperienceForm from './PracticalExperienceForm';
+import React from 'react';
+import useForm from './useForm';
+import useFormInput from './useFormInput';
 
-export default class PracticalExperience extends Component {
-  constructor(props) {
-    super(props);
+export default function PracticalExperience() {
+  const companyName = useFormInput('');
+  const positionTitle = useFormInput('');
+  const mainTasks = useFormInput('');
+  const joined = useFormInput('');
+  const left = useFormInput('');
+  const submit = useForm(false);
 
-    this.state = {
-      companyName: '',
-      positionTitle: '',
-      mainTasks: '',
-      joined: '',
-      left: '',
-      submitted: false,
-    };
-  }
-
-  handleCompanyNameChange = (e) => {
-    this.setState({
-      companyName: e.target.value,
-    });
-  };
-
-  handlePositionTitleChange = (e) => {
-    this.setState({
-      positionTitle: e.target.value,
-    });
-  };
-
-  handleMainTasksChange = (e) => {
-    this.setState({
-      mainTasks: e.target.value,
-    });
-  };
-
-  handleJoinedChange = (e) => {
-    this.setState({
-      joined: e.target.value,
-    });
-  };
-
-  handleLeftChange = (e) => {
-    this.setState({
-      left: e.target.value,
-    });
-  };
-
-  handleClick = () => {
-    const { submitted } = this.state;
-
-    this.setState({
-      submitted: !submitted,
-    });
-  };
-
-  onSubmit = () => {
-    const { submitted } = this.state;
-
-    this.setState({
-      submitted: !submitted,
-    });
-  };
-
-  render() {
-    const {
-      companyName, positionTitle, mainTasks, joined, left, submitted,
-    } = this.state;
-
-    return (
-      <section className="flex">
-        {submitted
+  return (
+    <section className="flex">
+      {
+        submit.value
           ? (
             <>
-              <p>{`Company Name: ${companyName}`}</p>
-              <p>{`Position Title: ${positionTitle}`}</p>
-              <p>{`Main tasks: ${mainTasks}`}</p>
-              <p>{`Joined: ${joined}`}</p>
-              <p>{`Left: ${left}`}</p>
-              <button type="button" onClick={this.handleClick}>Edit</button>
+              <p>{`Company Name: ${companyName.value}`}</p>
+              <p>{`Position Title: ${positionTitle.value}`}</p>
+              <p>{`Main Tasks: ${mainTasks.value}`}</p>
+              <p>{`Joined: ${joined.value}`}</p>
+              <p>{`Left: ${left.value}`}</p>
+              <button type="button" onClick={submit.handleClick}>Edit</button>
             </>
           )
           : (
-            <PracticalExperienceForm
-              companyName={companyName}
-              positionTitle={positionTitle}
-              mainTasks={mainTasks}
-              joined={joined}
-              left={left}
-              handleCompanyNameChange={this.handleCompanyNameChange}
-              handlePositionTitleChange={this.handlePositionTitleChange}
-              handleMainTasksChange={this.handleMainTasksChange}
-              handleJoinedChange={this.handleJoinedChange}
-              handleLeftChange={this.handleLeftChange}
-              onSubmit={this.onSubmit}
-            />
-          )}
-      </section>
-    );
-  }
+            <form className="flex" onSubmit={submit.handleClick}>
+              <label className="flex" htmlFor="company-name">
+                Company Name:
+                <input
+                  type="text"
+                  id="company-name"
+                  name="company-name"
+                  value={companyName.value}
+                  onChange={companyName.handleChange}
+                />
+              </label>
+
+              <label className="flex" htmlFor="position-title">
+                Position Title:
+                <input
+                  type="text"
+                  id="position-title"
+                  name="position-title"
+                  value={positionTitle.value}
+                  onChange={positionTitle.handleChange}
+                />
+              </label>
+
+              <label className="flex" htmlFor="main-tasks">
+                Main Tasks
+                <textarea
+                  value={mainTasks.value}
+                  onChange={mainTasks.handleChange}
+                />
+              </label>
+
+              <label className="flex" htmlFor="joined">
+                Joined:
+                <input
+                  type="date"
+                  id="joined"
+                  name="joined"
+                  value={joined.value}
+                  onChange={joined.handleChange}
+                />
+              </label>
+
+              <label className="flex" htmlFor="left">
+                Left:
+                <input
+                  type="date"
+                  id="left"
+                  name="left"
+                  value={left.value}
+                  onChange={left.handleChange}
+                />
+              </label>
+
+              <button type="submit">Submit</button>
+            </form>
+          )
+      }
+    </section>
+  );
 }
